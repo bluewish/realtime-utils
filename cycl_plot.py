@@ -39,25 +39,35 @@ def process_output(result_file):
                             hist_data[x] = []
                         hist_data[x].append((lat_value, lat_count))
             if line.strip().lower().startswith("# min latencies"):
-                min_lat = line.split(":")[1].split()
+                min_lat = [int(item) for item in (line.split(":")[1].split())]
             if line.strip().lower().startswith("# avg latencies"):
-                avg_lat = line.split(":")[1].split()
+                avg_lat = [int(item) for item in (line.split(":")[1].split())]
             if line.strip().lower().startswith("# max latencies"):
-                max_lat = line.split(":")[1].split()
+                max_lat = [int(item) for item in (line.split(":")[1].split())]
 
     return hist_data, min_lat, max_lat, avg_lat
 
 def draw_figure(hist_data, min, max, avg):
-    print hist_data[1]
     color_table=['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
+    cpu_count = 0
+    lat_avg = 0
+    lat_max = 0
+    lat_min = 0
     for cpu_no in hist_data.keys():
         x = [item[0] for item in hist_data[cpu_no]]
         y = [item[1] for item in hist_data[cpu_no]]
         fig = plt.plot(x, y, color_table[cpu_no]+'*',
-                       label="cpu[%s]:avg=%d,min=%d,max=%d" % (cpu_no, int(avg[cpu_no-1]), int(min[cpu_no-1]), int(max[cpu_no-1])))
+                       label="cpu[%s]:avg=%d,min=%d,max=%d" % (cpu_no, avg[cpu_no-1], min[cpu_no-1], max[cpu_no-1]))
+        lat_avg += avg[cpu_no-1]
+        if lat_min == 0:
+            lat_min = min[cpu_no-1]
+        if lat_max < max[cpu_no-1]:
+            lat_max = max[cpu_no-1]
+        cpu_count += 1
+
     plt.legend()
     plt.ylabel("Number of Samples")
-    plt.xlabel("Latency (us)")
+    plt.xlabel("Latency (us): avg=%d, min=%d, max=%d" % (lat_avg/cpu_count, lat_min, lat_max))
     plt.show()
 
 if __name__ == "__main__":
