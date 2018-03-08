@@ -1,0 +1,29 @@
+# 00:01:00 (periodic user-mode task, 99 us period, priority 99)
+# ----lat min|----lat avg|----lat max|-overrun|---msw|
+#      -0.438|      0.636|     16.619|       0|     0|
+# Xenomai version: Xenomai/cobalt v3.0.6 -- #35fc6d1 (2018-02-27 09:33:45 +0100)
+# Linux ken-nuc 4.9.51-xenomai-ipipe #20 SMP Fri Mar 2 23:35:07 CST 2018 x86_64 x86_64 x86_64 GNU/Linux
+# Kernel parameters: BOOT_IMAGE=/boot/vmlinuz-4.9.51-xenomai-ipipe root=UUID=2890bd78-a37e-4508-9b12-c33e8e937164 ro quiet splash vt.handoff=7
+# I-pipe release #4 detected
+# Cobalt core 3.0.6 detected
+# Compiler: gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.4) 
+# Build args: --enable-registry --enable-smp
+0 1
+0.5 557932
+1.5 37381
+2.5 5053
+3.5 970
+4.5 119
+5.5 22
+6.5 6
+7.5 2
+8.5 3
+9.5 1
+10.5 2
+11.5 2
+12.5 1
+13.5 1
+14.5 2
+15.5 2
+16.5 2
+17 1
