@@ -32,7 +32,7 @@ def process_output(result_file):
                 temp_data = line.strip().split()
                 cpu_num = len(temp_data) - 1
                 lat_value = int(temp_data[0])
-                for x in xrange(1, cpu_num):
+                for x in xrange(1, cpu_num + 1):
                     lat_count = int(temp_data[x])
                     if lat_count != 0:
                         if not hist_data.has_key(x):
@@ -56,7 +56,7 @@ def draw_figure(hist_data, min, max, avg):
     for cpu_no in hist_data.keys():
         x = [item[0] for item in hist_data[cpu_no]]
         y = [item[1] for item in hist_data[cpu_no]]
-        fig = plt.plot(x, y, color_table[cpu_no]+'*',
+        fig = plt.plot(x, y, color_table[cpu_no - 1]+'*',
                        label="cpu[%s]:avg=%d,min=%d,max=%d" % (cpu_no, avg[cpu_no-1], min[cpu_no-1], max[cpu_no-1]))
         lat_avg += avg[cpu_no-1]
         if lat_min == 0:
