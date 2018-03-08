@@ -56,6 +56,8 @@ def draw_figure(hist_data, min, max, avg):
         fig = plt.plot(x, y, color_table[cpu_no]+'*',
                        label="cpu[%s]:avg=%d,min=%d,max=%d" % (cpu_no, int(avg[cpu_no-1]), int(min[cpu_no-1]), int(max[cpu_no-1])))
     plt.legend()
+    plt.ylabel("Number of Samples")
+    plt.xlabel("Latency (us)")
     plt.show()
 
 if __name__ == "__main__":
