@@ -19,6 +19,7 @@ def process_output(result_file):
     count = 0
     min = 0
     max = 0
+    variant = 0
     with open(result_file) as f:
         for line in f.readlines():
             if len(line.strip()) == 0:
@@ -35,9 +36,14 @@ def process_output(result_file):
             count += lat_count
             hist_data.append((lat_value, lat_count))
         avg = float(avg / count)
-    return hist_data, min, max, avg
+    for item in hist_data:
+        variant += ((item[0]-avg)**2)*item[1]
+    variant = variant / count
+    stdev = variant**(.5)
+    print variant, stdev
+    return hist_data, min, max, avg, stdev
 
-def draw_figure(hist_data, min, max, avg):
+def draw_figure(hist_data, min, max, avg, stdev):
     color_table=['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
     cpu_count = 0
     lat_avg = 0
@@ -46,8 +52,9 @@ def draw_figure(hist_data, min, max, avg):
 
     x = [item[0] for item in hist_data]
     y = [item[1] for item in hist_data]
-    fig = plt.plot(x, y, 'r*',
-                       label="avg=%f,min=%f,max=%d" % (avg, min, max))
+    print stdev
+    fig = plt.plot(x, y, '-r*',
+                       label="avg=%.3f,min=%.3f,max=%.3f,stdev=%.3f" % (avg, min, max, stdev))
 
     plt.legend()
     plt.ylabel("Number of Samples")
@@ -56,5 +63,5 @@ def draw_figure(hist_data, min, max, avg):
 
 if __name__ == "__main__":
     #process_output(sys.argv[1])
-    hist, min, max, avg = process_output(process_cmd())
-    draw_figure(hist, min, max, avg)
+    hist, min, max, avg, stdev= process_output(process_cmd())
+    draw_figure(hist, min, max, avg, stdev)
