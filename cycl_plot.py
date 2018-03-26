@@ -60,12 +60,14 @@ def draw_figure(hist_data, min, max, avg):
         samples = 0
         variant = 0
         for index in xrange(0, len(x) -1):
+            #print x[index], avg[cpu_no-1], y[index]
             variant += (x[index] - avg[cpu_no-1]) * (x[index] - avg[cpu_no-1]) * y[index]
             samples += y[index]
         variant = variant/samples
+        #print variant, samples
         stddev = variant**(.5)
         fig = plt.plot(x, y, "-"+color_table[cpu_no - 1]+'*',
-                       label="cpu[%s]:avg=%d,min=%d,max=%d,std=%.3f" % (cpu_no, avg[cpu_no-1], min[cpu_no-1], max[cpu_no-1], stddev))
+                       label="cpu[%s]:avg=%d,min=%d,max=%d,std=%f" % (cpu_no, avg[cpu_no-1], min[cpu_no-1], max[cpu_no-1], stddev))
         lat_avg += avg[cpu_no-1]
         if lat_min == 0:
             lat_min = min[cpu_no-1]
