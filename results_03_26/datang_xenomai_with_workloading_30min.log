@@ -1,0 +1,34 @@
+# 00:30:08 (in-kernel periodic task, 100 us period, priority 99)
+# ----lat min|----lat avg|----lat max|-overrun|---msw|
+#      -0.991|      0.368|     21.213|       0|     0|
+# Xenomai version: Xenomai/cobalt v3.0.6
+# Linux datang 4.9.51-xenomai-ipipe #32 SMP Tue Mar 20 01:48:57 CST 2018 x86_64 x86_64 x86_64 GNU/Linux
+# Kernel parameters: isolcpus=1 i915.enable_dc=0 i915.enable_rc6=0 i915.enable_execlists=0 i915.disable_power_well=0 processor.max_cstate=0 intel_idle.max_cstate=0 intel_pstate=disable idle=halt xenomai.smi=enabled BOOT_IMAGE=/boot/vmlinuz-4.9.51-xenomai-ipipe root=UUID=58c037db-6f28-4869-824b-2abe163aee9b ro quiet splash nosmap vt.handoff=7
+# I-pipe release #4 detected
+# Cobalt core 3.0.6 detected
+# Compiler: gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9) 
+# Build args:
+0 1
+0.5 15133167
+1.5 1038091
+2.5 1310562
+3.5 575152
+4.5 13870
+5.5 5890
+6.5 1938
+7.5 630
+8.5 209
+9.5 76
+10.5 46
+11.5 8
+12.5 13
+13.5 6
+14.5 2
+15.5 2
+16.5 2
+17.5 1
+18.5 1
+19.5 1
+20.5 2
+21.5 2
+22 1
